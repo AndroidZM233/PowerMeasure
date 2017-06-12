@@ -1,0 +1,90 @@
+package speedata.com.powermeasure.activity;
+
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
+
+import common.adapter.CommonAdapter;
+import common.adapter.ViewHolder;
+import common.base.App;
+import common.base.act.FragActBase;
+import common.event.ViewMessage;
+import common.view.CustomTitlebar;
+import speedata.com.powermeasure.R;
+import speedata.com.powermeasure.bean.InspListClass;
+
+@EActivity(R.layout.activity_equipment_replace)
+public class EquipmentReplaceAct extends FragActBase {
+    @ViewById
+    CustomTitlebar titlebar;
+    @ViewById
+    ListView lv_EReplace;
+    private static final int GET_TROUBLE_LIST_SUCCESS = 0;  //拿list成功
+    private List<InspListClass.INSPLISTBean> insp_list;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case GET_TROUBLE_LIST_SUCCESS:
+                    CommonAdapter commonAdapter = new CommonAdapter(mContext, insp_list,
+                            R.layout.adapter_equipment_replace) {
+                        @Override
+                        public void convert(ViewHolder helper, Object item, int position) {
+                            helper.setText(R.id.tv_er_name, insp_list.get(position)
+                                    .getINSP_NO());
+                            helper.setText(R.id.tv_er_time, insp_list.get(position)
+                                    .getINSP_NAME());
+                            helper.setText(R.id.tv_er_content, insp_list.get(position)
+                                    .getINSP_MUST_TIME());
+                        }
+                    };
+                    lv_EReplace.setAdapter(commonAdapter);
+                    lv_EReplace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            showLoading("跳转中...");
+                        }
+                    });
+                    break;
+            }
+        }
+    };
+    @AfterViews
+    protected void main() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        App.getInstance().addActivity(EquipmentReplaceAct.this);
+        initTitlebar();
+        setSwipeEnable(false);
+    }
+    @Override
+    protected Context regieterBaiduBaseCount() {
+        return null;
+    }
+
+    @Override
+    protected void initTitlebar() {
+        titlebar.setTitlebarStyle(CustomTitlebar.TITLEBAR_STYLE_NORMAL);
+        titlebar.setAttrs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        }, "疑难故障", null);
+    }
+
+    @Override
+    public void onEventMainThread(ViewMessage viewMessage) {
+
+    }
+}

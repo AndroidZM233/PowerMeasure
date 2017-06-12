@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <common.view.CustomTitlebar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="升级原因  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_eqSecond_reason"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="功能变更  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_FUNC_CHANGE"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <View
+                android:layout_marginTop="5dp"
+                android:background="@drawable/view_bg"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+
+            </View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="版本号码  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="20sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_VERSION_NO"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="涉及系统  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_PER_SYSTEM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="升级文件  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_ATMT_SN"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <View
+                android:layout_marginTop="5dp"
+                android:background="@drawable/view_bg"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+
+            </View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="升级开始  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_PLAN_BGN_TIME"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="升级结束  " />
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shuxian"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp">
+
+                </View>
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#12AADD"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_PLAN_END_TIME"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2016" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btn_eqSecond_shengji"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15sp"
+                    android:background="@drawable/xiufuyanzheng" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

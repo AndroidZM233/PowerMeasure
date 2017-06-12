@@ -1,0 +1,190 @@
+package speedata.com.powermeasure.bean;
+
+import java.util.List;
+
+/**
+ * Created by 张明_ on 2016/8/12.
+ */
+public class InspScanClass {
+
+
+    /**
+     * RT_LIST : [{"FBACK_DESC":null,"FBACK_TIME":null,"EQUIP_NO":"1101201001000000000000","INSP_MUST_TIME":"2016-09-08 10:25:57","INSP_CONT":"004","INSP_NAME":"档停装置异常","INSP_ACTL_TIME":"2016-09-08 09:55:57","INSP_NO":"12010001","WORK_ORDER_NO":"A2016090810210000442","FBACK_RSLT":"00"},{"FBACK_DESC":null,"FBACK_TIME":null,"EQUIP_NO":"1101201001000000000000","INSP_MUST_TIME":"2016-09-08 10:25:57","INSP_CONT":"001","INSP_NAME":"机械动作是否正常","INSP_ACTL_TIME":"2016-09-08 09:55:57","INSP_NO":"12010001","WORK_ORDER_NO":"A2016090810210000442","FBACK_RSLT":"00"},{"FBACK_DESC":null,"FBACK_TIME":null,"EQUIP_NO":"1101201001000000000000","INSP_MUST_TIME":"2016-09-08 10:25:57","INSP_CONT":"002","INSP_NAME":"工作节拍是否正常","INSP_ACTL_TIME":"2016-09-08 09:55:57","INSP_NO":"12010001","WORK_ORDER_NO":"A2016090810210000442","FBACK_RSLT":"00"},{"FBACK_DESC":null,"FBACK_TIME":null,"EQUIP_NO":"1101201001000000000000","INSP_MUST_TIME":"2016-09-08 10:25:57","INSP_CONT":"003","INSP_NAME":"是否有异常声响","INSP_ACTL_TIME":"2016-09-08 09:55:57","INSP_NO":"12010001","WORK_ORDER_NO":"A2016090810210000442","FBACK_RSLT":"00"}]
+     * RT_F : 1
+     * INSP_MUST_TIME : 2016-09-08 08:30:00
+     * INSP_NO : 12010001
+     * INSP_NAME : 自动化单相电能表检定系统01号线001号上料装置
+     * INSP_ACTL_TIME : 2016-09-08 09:55:57
+     * RT_D : 系统接口提示,巡检点查询成功!
+     */
+
+    private String RT_F;
+    private String INSP_MUST_TIME;
+    private String INSP_NO;
+    private String INSP_NAME;
+    private String INSP_ACTL_TIME;
+    private String RT_D;
+    /**
+     * FBACK_DESC : null
+     * FBACK_TIME : null
+     * EQUIP_NO : 1101201001000000000000
+     * INSP_MUST_TIME : 2016-09-08 10:25:57
+     * INSP_CONT : 004
+     * INSP_NAME : 档停装置异常
+     * INSP_ACTL_TIME : 2016-09-08 09:55:57
+     * INSP_NO : 12010001
+     * WORK_ORDER_NO : A2016090810210000442
+     * FBACK_RSLT : 00
+     */
+
+    private List<RTLISTBean> RT_LIST;
+
+    public String getRT_F() {
+        return RT_F;
+    }
+
+    public void setRT_F(String RT_F) {
+        this.RT_F = RT_F;
+    }
+
+    public String getINSP_MUST_TIME() {
+        return INSP_MUST_TIME;
+    }
+
+    public void setINSP_MUST_TIME(String INSP_MUST_TIME) {
+        this.INSP_MUST_TIME = INSP_MUST_TIME;
+    }
+
+    public String getINSP_NO() {
+        return INSP_NO;
+    }
+
+    public void setINSP_NO(String INSP_NO) {
+        this.INSP_NO = INSP_NO;
+    }
+
+    public String getINSP_NAME() {
+        return INSP_NAME;
+    }
+
+    public void setINSP_NAME(String INSP_NAME) {
+        this.INSP_NAME = INSP_NAME;
+    }
+
+    public String getINSP_ACTL_TIME() {
+        return INSP_ACTL_TIME;
+    }
+
+    public void setINSP_ACTL_TIME(String INSP_ACTL_TIME) {
+        this.INSP_ACTL_TIME = INSP_ACTL_TIME;
+    }
+
+    public String getRT_D() {
+        return RT_D;
+    }
+
+    public void setRT_D(String RT_D) {
+        this.RT_D = RT_D;
+    }
+
+    public List<RTLISTBean> getRT_LIST() {
+        return RT_LIST;
+    }
+
+    public void setRT_LIST(List<RTLISTBean> RT_LIST) {
+        this.RT_LIST = RT_LIST;
+    }
+
+    public static class RTLISTBean {
+        private Object FBACK_DESC;
+        private Object FBACK_TIME;
+        private String EQUIP_NO;
+        private String INSP_MUST_TIME;
+        private String INSP_CONT;
+        private String INSP_NAME;
+        private String INSP_ACTL_TIME;
+        private String INSP_NO;
+        private String WORK_ORDER_NO;
+        private String FBACK_RSLT;
+
+        public Object getFBACK_DESC() {
+            return FBACK_DESC;
+        }
+
+        public void setFBACK_DESC(Object FBACK_DESC) {
+            this.FBACK_DESC = FBACK_DESC;
+        }
+
+        public Object getFBACK_TIME() {
+            return FBACK_TIME;
+        }
+
+        public void setFBACK_TIME(Object FBACK_TIME) {
+            this.FBACK_TIME = FBACK_TIME;
+        }
+
+        public String getEQUIP_NO() {
+            return EQUIP_NO;
+        }
+
+        public void setEQUIP_NO(String EQUIP_NO) {
+            this.EQUIP_NO = EQUIP_NO;
+        }
+
+        public String getINSP_MUST_TIME() {
+            return INSP_MUST_TIME;
+        }
+
+        public void setINSP_MUST_TIME(String INSP_MUST_TIME) {
+            this.INSP_MUST_TIME = INSP_MUST_TIME;
+        }
+
+        public String getINSP_CONT() {
+            return INSP_CONT;
+        }
+
+        public void setINSP_CONT(String INSP_CONT) {
+            this.INSP_CONT = INSP_CONT;
+        }
+
+        public String getINSP_NAME() {
+            return INSP_NAME;
+        }
+
+        public void setINSP_NAME(String INSP_NAME) {
+            this.INSP_NAME = INSP_NAME;
+        }
+
+        public String getINSP_ACTL_TIME() {
+            return INSP_ACTL_TIME;
+        }
+
+        public void setINSP_ACTL_TIME(String INSP_ACTL_TIME) {
+            this.INSP_ACTL_TIME = INSP_ACTL_TIME;
+        }
+
+        public String getINSP_NO() {
+            return INSP_NO;
+        }
+
+        public void setINSP_NO(String INSP_NO) {
+            this.INSP_NO = INSP_NO;
+        }
+
+        public String getWORK_ORDER_NO() {
+            return WORK_ORDER_NO;
+        }
+
+        public void setWORK_ORDER_NO(String WORK_ORDER_NO) {
+            this.WORK_ORDER_NO = WORK_ORDER_NO;
+        }
+
+        public String getFBACK_RSLT() {
+            return FBACK_RSLT;
+        }
+
+        public void setFBACK_RSLT(String FBACK_RSLT) {
+            this.FBACK_RSLT = FBACK_RSLT;
+        }
+    }
+}

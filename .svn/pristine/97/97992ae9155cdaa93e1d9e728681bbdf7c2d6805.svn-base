@@ -1,0 +1,74 @@
+package speedata.com.powermeasure.activity;
+
+import android.content.Context;
+import android.os.Environment;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import common.base.App;
+import common.base.act.FragActBase;
+import common.event.ViewMessage;
+import common.utils.FileUtils;
+import common.view.CustomTitlebar;
+import speedata.com.powermeasure.R;
+
+@EActivity(R.layout.activity_attachment)
+public class AttachmentAct extends FragActBase {
+    @ViewById
+    Button btn_att_save;
+    @ViewById
+    EditText et_att_method;
+    @ViewById
+    CustomTitlebar titlebar;
+    private FileUtils fileUtils;
+
+    @AfterViews
+    protected void main() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        App.getInstance().addActivity(AttachmentAct.this);
+        setSwipeEnable(false);
+        initTitlebar();
+        fileUtils = new FileUtils(mContext);
+        try {
+            String read = fileUtils.read(Environment.getExternalStorageDirectory() + "/u.txt");
+            et_att_method.setText(read);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Click
+    void btn_att_save(){
+        try {
+            fileUtils.save("u",et_att_method.getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected Context regieterBaiduBaseCount() {
+        return null;
+    }
+
+    @Override
+    protected void initTitlebar() {
+        titlebar.setTitlebarStyle(CustomTitlebar.TITLEBAR_STYLE_NORMAL);
+        titlebar.setAttrs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        }, "附件查看", null);
+    }
+
+    @Override
+    public void onEventMainThread(ViewMessage viewMessage) {
+
+    }
+}

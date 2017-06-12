@@ -1,0 +1,45 @@
+/*
+ *
+ * @author Echo
+ * @created 2016.5.29
+ * @email bairu.xu@speedatagroup.com
+ * @version v1.0
+ *
+ */
+
+
+package com.speedata.zhongqi.model;
+
+
+import com.speedata.zhongqi.application.APIMethod;
+
+import java.util.HashMap;
+
+import common.http.MHttpManager;
+import common.http.MResponseListener;
+
+public class HttpModel {
+    public static byte[] lock = new byte[0];
+    private static HttpModel mHttpModel;
+
+    private HttpModel() {
+    }
+
+    public static HttpModel getInstance() {
+        synchronized (lock) {
+            if (mHttpModel == null) {
+                mHttpModel = new HttpModel();
+            }
+            return mHttpModel;
+        }
+    }
+
+|
+    public void ${method}(MResponseListener l) {
+        HashMap<String, Object> map= new HashMap<String, Object>();
+        MHttpManager.postJson(APIMethod.${methodName}, map, l);
+    }
+|
+
+
+}

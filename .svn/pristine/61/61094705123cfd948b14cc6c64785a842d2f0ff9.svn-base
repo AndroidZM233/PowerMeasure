@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="speedata.com.powermeasure.activity.DelayApplyAct">
+
+
+    <common.view.CustomTitlebar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll_planEnd"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="0.4"
+            android:text="计划时间："
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="2016"
+            android:id="@+id/tv_delay_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="0.4"
+            android:text="延期日期："
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center_vertical"
+            style="@style/main_button"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="2016"
+            android:id="@+id/tv_delay_year"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center_vertical"
+            style="@style/main_button"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="2016"
+            android:id="@+id/tv_delay_hour"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/bg_alibuybutton"
+        android:text="确定"
+        android:id="@+id/btn_delay_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

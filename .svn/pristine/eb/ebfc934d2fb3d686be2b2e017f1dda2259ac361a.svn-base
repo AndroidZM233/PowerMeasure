@@ -1,0 +1,107 @@
+package speedata.com.powermeasure.activity;
+
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.alibaba.fastjson.JSON;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
+
+import common.base.App;
+import common.base.act.FragActBase;
+import common.event.ViewMessage;
+import common.http.MResponse;
+import common.http.MResponseListener;
+import common.view.CustomTitlebar;
+import common.webserice.WebService;
+import speedata.com.powermeasure.R;
+import speedata.com.powermeasure.bean.LoginOutClass;
+import speedata.com.powermeasure.constant.Constants;
+import speedata.com.powermeasure.model.HttpModel;
+import speedata.com.powermeasure.model.WebModel;
+
+@EActivity(R.layout.activity_special_second)
+public class SpecialSecondAct extends FragActBase {
+    @ViewById
+    CustomTitlebar titlebar;
+    @ViewById
+    Button btn_spSecond_fankui;
+    @ViewById
+    Button btn_spSecond_change;
+    @ViewById
+    EditText et_spSecond_trouble;
+    @AfterViews
+    protected void main() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        App.getInstance().addActivity(SpecialSecondAct.this);
+        initTitlebar();
+        setSwipeEnable(false);
+    }
+
+    @Click
+    void btn_spSecond_fankui(){
+        showLoading("反馈中...");
+        WebModel.getInstance().specialFeedback(new MResponseListener() {
+            @Override
+            public void onSuccess(MResponse response) {
+                String callWebService = String.valueOf(response.data);
+                List<LoginOutClass> loginOutClasses = JSON.parseArray(callWebService,
+                        LoginOutClass.class);
+                LoginOutClass spBack = loginOutClasses.get(0);
+                String rt_f = spBack.getRT_F();
+                if (rt_f.equals("1")){
+                    showToast("反馈成功");
+                }else {
+                    showToast("反馈失败，"+spBack.getRT_D());
+                }
+                hideLoading();
+            }
+
+            @Override
+            public void onError(final MResponse response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.msg != null) {
+                            showToast(response.msg.toString());
+                        } else {
+                            showToast("出错了！");
+                        }
+                        hideLoading();
+                    }
+                });
+            }
+        },getXml("ORDER_NO","1"),et_spSecond_trouble.getText().toString());
+
+    }
+    @Override
+    protected Context regieterBaiduBaseCount() {
+        return null;
+    }
+
+    @Override
+    protected void initTitlebar() {
+        titlebar.setTitlebarStyle(CustomTitlebar.TITLEBAR_STYLE_NORMAL);
+        titlebar.setAttrs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        }, "专项维保反馈", null);
+    }
+
+    @Override
+    public void onEventMainThread(ViewMessage viewMessage) {
+
+    }
+}

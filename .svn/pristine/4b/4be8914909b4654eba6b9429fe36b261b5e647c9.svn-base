@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="axis-schema">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/libs/axis-schema.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

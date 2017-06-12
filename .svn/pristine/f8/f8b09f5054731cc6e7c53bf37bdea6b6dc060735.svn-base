@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\SPEEDATA\PowerMeasure\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d5dab72350dea3d73ac766eb0f9734a9d33d95f1">
+        <dex dex="D:\SPEEDATA\PowerMeasure\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_b7bdeab6bcf385281e5c1fbd5f0067d09a85b652.jar" />
+    </item>
+
+</items>

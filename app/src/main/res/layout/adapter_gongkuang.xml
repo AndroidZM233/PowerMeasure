@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/gongkuang_bg"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal">
+
+            <!--app:bgColor="#e5e5e5"   // The Background Color of Circle-->
+            <!--app:fgColor="#ff765c"   // The Foreground Color of Circle-->
+            <!--app:percent="25"        // Current percent. "100" is full-->
+            <!--app:startAngle="0"      // Start Angle of the foreground sector-->
+
+            <speedata.com.powermeasure.view.RingProgressView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rpv_"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#0FA680"
+                app:fgColorStart="#0FA680"
+                app:percent="25"
+                app:startAngle="0"
+                app:strokeWidth="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="25"
+                android:textColor="#000"
+                android:textSize="15sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:text="合格率"
+            android:textSize="15sp"
+            android:id="@+id/tv_hegelv"
+            android:textColor="#0FA680"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/DY"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:text="01单元"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/MC"
+                android:layout_marginTop="3dp"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:text="单方向复费率(居民用)[2.0 单相 5(60)A220V]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="总数"
+                    android:textSize="15sp"
+                    android:textColor="#0FA680"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/ZS"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/zongshu_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:text="只"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="15sp"
+                    android:textColor="#0FA680"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="完成"
+                    android:textSize="15sp"
+                    android:textColor="#0FA680"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/YWC"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/zongshu_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:text="只"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="15sp"
+                    android:textColor="#0FA680"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

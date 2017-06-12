@@ -1,0 +1,174 @@
+package speedata.com.powermeasure.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.alibaba.fastjson.JSON;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.io.Serializable;
+import java.util.List;
+
+import common.adapter.CommonAdapter;
+import common.adapter.ViewHolder;
+import common.base.App;
+import common.base.act.FragActBase;
+import common.event.ViewMessage;
+import common.http.MResponse;
+import common.http.MResponseListener;
+import common.view.CustomTitlebar;
+import common.webserice.WebService;
+import speedata.com.powermeasure.R;
+import speedata.com.powermeasure.bean.AlListClass;
+import speedata.com.powermeasure.bean.RegularListClass;
+import speedata.com.powermeasure.constant.Constants;
+import speedata.com.powermeasure.model.HttpModel;
+import speedata.com.powermeasure.model.WebModel;
+
+@EActivity(R.layout.activity_inspect)
+public class AlarmAct extends FragActBase {
+    private static final int AL_LIST_SUCCESS = 0;
+    @ViewById
+    CustomTitlebar titlebar;
+    @ViewById
+    ListView lv_insp;
+    private List<AlListClass.ALARMLISTBean> alarm_list;
+
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case AL_LIST_SUCCESS:
+                    CommonAdapter commonAdapter=new CommonAdapter(mContext,alarm_list,
+                            R.layout.adapter_al) {
+                        @Override
+                        public void convert(ViewHolder helper, Object item, int position) {
+                            helper.setText(R.id.tv_al_unitName,
+                                    alarm_list.get(position).getUNIT_NAME());
+                            helper.setText(R.id.tv_al_DEVICE_NAME,
+                                    alarm_list.get(position).getDEVICE_NAME());
+                            helper.setText(R.id.tv_al_ALARM_LEVEL,
+                                    alarm_list.get(position).getALARM_LEVEL());
+                            helper.setText(R.id.tv_al_ALARM_TIME,
+                                    alarm_list.get(position).getALARM_TIME());
+                            helper.setText(R.id.tv_al_EQUIP_NAME,
+                                    alarm_list.get(position).getEQUIP_NAME());
+                            helper.setText(R.id.tv_al_ORDER_STATUS,
+                                    alarm_list.get(position).getORDER_STATUS());
+                        }
+                    };
+                    lv_insp.setAdapter(commonAdapter);
+                    lv_insp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            setXml("AL_ORDER_NO",alarm_list.get(position).getORDER_NO());
+                            setXml("AL_UNIT_NAME",alarm_list.get(position).getUNIT_NAME());
+                            setXml("AL_DEVICE_NAME",alarm_list.get(position).getDEVICE_NAME());
+                            setXml("AL_EQUIP_NAME",alarm_list.get(position).getEQUIP_NAME());
+                            setXml("AL_ALARM_LEVEL",alarm_list.get(position).getALARM_LEVEL());
+                            setXml("AL_ALARM_CAUSE_NAME",alarm_list.get(position).getALARM_CAUSE_NAME());
+                            setXml("AL_ALARM_DEAL_SUGGESTION",alarm_list.get(position)
+                                    .getALARM_DEAL_SUGGESTION());
+                            setXml("AL_ALARM_TIME",alarm_list.get(position).getALARM_TIME());
+                            String order_status = alarm_list
+                                    .get(position).getORDER_STATUS();
+                            if (order_status.equals("待反馈")){
+                                openAct(AlarmSecondAct.class,true);
+                            }
+                            if (order_status.equals("待维修")){
+                                openAct(AlarmThirdAct.class,true);
+                            }
+
+                        }
+                    });
+                    break;
+            }
+        }
+    };
+    @AfterViews
+    protected void main() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        App.getInstance().addActivity(AlarmAct.this);
+        initTitlebar();
+        setSwipeEnable(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DoGetAlList();
+    }
+
+    //待办查询点查询
+    private void DoGetAlList() {
+        showLoading("查询中...");
+        WebModel.getInstance().getAlarmlList(new MResponseListener() {
+            @Override
+            public void onSuccess(MResponse response) {
+                String callWebService = String.valueOf(response.data);
+                callWebService="[{\"RT_F\":\"1\",\"RT_D\":\"\",\"ALARM_LIST\":[{\"ORDER_NO\":\"D2016070212334\",\"UNIT_NAME\":\"单项01单元\"," +
+                        "\"DEVICE_NAME\":\"上料装置\",\"EQUIP_NAME\":\"吸盘\",\"ALARM_LEVEL\":\"严重\",\"ALARM_CAUSE_NAME\":\"信号丢失\",\"ALARM_DEAL_SUGGESTION\":\"\",\"ORDER_STATUS\":\"待反馈\",\"ALARM_TIME\":\"2016-08-02 12:00:00\"},{\"ORDER_NO\":\"D2016070212334\",\"UNIT_NAME\":\"单项01单元\"," +
+                        "\"DEVICE_NAME\":\"上料装置\",\"EQUIP_NAME\":\"吸盘\",\"ALARM_LEVEL\":\"严重\",\"ALARM_CAUSE_NAME\":\"信号丢失\",\"ALARM_DEAL_SUGGESTION\":\"\",\"ORDER_STATUS\":\"待维修\",\"ALARM_TIME\":\"2016-08-02 12:00:00\"}]}]";
+                List<AlListClass> alListClasses = JSON.parseArray(
+                        callWebService, AlListClass.class);
+                AlListClass alListClass = alListClasses.get(0);
+                String rt_f = alListClass.getRT_F();
+                if (rt_f.equals("1")){
+                    alarm_list = alListClass.getALARM_LIST();
+                    Message message=new Message();
+                    message.what=AL_LIST_SUCCESS;
+                    handler.sendMessage(message);
+                }else {
+                    showToast("查询失败，"+alListClass.getRT_D());
+                }
+                hideLoading();
+            }
+
+            @Override
+            public void onError(final MResponse response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.msg != null) {
+                            showToast(response.msg.toString());
+                        }else {
+                            showToast("出错了！");
+                        }
+                        hideLoading();
+                    }
+                });
+            }
+        },getXml("3PROC_CODE","1"),getXml("OPER_NO","1"));
+    }
+
+    @Override
+    protected Context regieterBaiduBaseCount() {
+        return null;
+    }
+
+    @Override
+    protected void initTitlebar() {
+        titlebar.setTitlebarStyle(CustomTitlebar.TITLEBAR_STYLE_NORMAL);
+        titlebar.setAttrs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        }, "报警工单列表", null);
+    }
+
+    @Override
+    public void onEventMainThread(ViewMessage viewMessage) {
+
+    }
+}

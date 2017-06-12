@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rl"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/ll_insp_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="巡查点编号：" />
+
+        <TextView
+            android:id="@+id/tv_insp_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_insp_number"
+        android:id="@+id/ll_insp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="巡查点名称：" />
+
+        <TextView
+            android:id="@+id/tv_insp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_insp_name"
+        android:id="@+id/ll_insp_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="应巡查时间：" />
+
+        <TextView
+            android:id="@+id/tv_insp_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

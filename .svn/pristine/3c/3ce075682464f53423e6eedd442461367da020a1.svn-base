@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/topban"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/left_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/titlebar_height"
+            android:layout_centerVertical="true"
+            android:minWidth="@dimen/titlebtn_w"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/commom_margin"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/titlebar_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/commom_textsize"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/right_layout"
+            android:layout_toRightOf="@+id/left_layout"
+            android:layout_toEndOf="@+id/left_layout">
+
+            <FrameLayout
+                android:id="@+id/titlebar_custom_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+            </FrameLayout>
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/titlebar_left_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_back"
+                android:visibility="visible" />
+            <common.view.MarqueeTextView
+                android:id="@+id/titlebar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:lines="1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:visibility="visible" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:minWidth="@dimen/titlebtn_w"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/commom_margin">
+
+            <TextView
+                android:id="@+id/titlebar_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="清除"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/commom_textsize"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/titlebar_right_btn"
+                android:layout_width="@dimen/backbtn_w"
+                android:layout_height="@dimen/backbtn_w"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

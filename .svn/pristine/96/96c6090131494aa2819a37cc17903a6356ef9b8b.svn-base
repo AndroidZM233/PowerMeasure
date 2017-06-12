@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/ll_insp_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单元名称：" />
+
+        <TextView
+            android:id="@+id/tv_al_unitName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_insp_number"
+        android:id="@+id/ll_insp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="检修装置：" />
+
+        <TextView
+            android:id="@+id/tv_al_DEVICE_NAME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_insp_name"
+        android:id="@+id/ll3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备名称：" />
+
+        <TextView
+            android:id="@+id/tv_al_EQUIP_NAME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/ll3"
+        android:id="@+id/ll4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报警时间：" />
+
+        <TextView
+            android:id="@+id/tv_al_ALARM_TIME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/ll4"
+        android:id="@+id/ll5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报警等级：" />
+
+        <TextView
+            android:id="@+id/tv_al_ALARM_LEVEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll5"
+        android:id="@+id/ll7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工单编号：" />
+
+        <TextView
+            android:id="@+id/tv_al_ORDER_NO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/red"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ll7"
+        android:id="@+id/ll6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工单状态：" />
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_al_ORDER_STATUS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="007" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

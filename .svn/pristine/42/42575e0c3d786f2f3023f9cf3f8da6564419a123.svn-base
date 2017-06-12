@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\SPEEDATA\\svn\\SpeeDataProduct\\PowerMeasure\\library\\build\\intermediates\\res\\merged\\release\\layout\\notification_bg.xml",
+        "source": "D:\\SPEEDATA\\svn\\SpeeDataProduct\\PowerMeasure\\library\\src\\main\\res\\layout\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\SPEEDATA\\svn\\SpeeDataProduct\\PowerMeasure\\library\\build\\intermediates\\res\\merged\\release\\layout\\notification.xml",
+        "source": "D:\\SPEEDATA\\svn\\SpeeDataProduct\\PowerMeasure\\library\\src\\main\\res\\layout\\notification.xml"
+    }
+]

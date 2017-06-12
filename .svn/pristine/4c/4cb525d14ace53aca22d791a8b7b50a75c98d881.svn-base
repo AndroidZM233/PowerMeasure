@@ -1,0 +1,328 @@
+/*
+ *
+ * @author Echo
+ * @created 2016.6.3
+ * @email bairu.xu@speedatagroup.com
+ * @version v1.0
+ *
+ */
+
+package speedata.com.powermeasure.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.alibaba.fastjson.JSON;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import common.base.App;
+import common.base.act.FragActBase;
+import common.base.dialog.ToastUtils;
+import common.event.ViewMessage;
+import common.http.MResponse;
+import common.http.MResponseListener;
+import common.view.BadgeView;
+import common.view.CustomTitlebar;
+import speedata.com.powermeasure.R;
+import speedata.com.powermeasure.bean.OperLoginClass;
+import speedata.com.powermeasure.bean.SysCountClass;
+import speedata.com.powermeasure.model.WebModel;
+
+import static common.utils.LogUtil.DEGUG_MODE;
+import static common.utils.LogUtil.e;
+
+@EActivity(R.layout.act_main)
+public class MainAct extends FragActBase {
+    private static final String TAG = DEGUG_MODE ? "MainAct" : MainAct.class.getSimpleName();
+    private static final boolean debug = true;
+
+    @ViewById
+    ImageView num1;
+    @ViewById
+    ImageView num2;
+    @ViewById
+    ImageView num3;
+    @ViewById
+    ImageView num4;
+    @ViewById
+    ImageView num5;
+    @ViewById
+    ImageView num6;
+    @ViewById
+    ImageView num7;
+    private List<ImageView> imageViewList;
+    private List<SysCountClass.RTLISTBean> rt_list;
+    private List<BadgeView> badgeViewList;
+    private int rtlist_size;
+
+
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        PushAgent mPushAgent = PushAgent.getInstance(mContext);
+////        mPushAgent.enable();
+//        //开启推送并设置注册的回调处理
+//        mPushAgent.enable(new IUmengRegisterCallback() {
+//
+//            @Override
+//            public void onRegistered(final String registrationId) {
+//                new Handler().post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //onRegistered方法的参数registrationId即是device_token
+//                        showToast(registrationId);
+//                    }
+//                });
+//            }
+//        });
+//    }
+
+    @AfterViews
+    protected void main() {
+        App.getInstance().addActivity(MainAct.this);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
+        initTitlebar();
+        setSwipeEnable(false);
+        badgeViewList = new ArrayList<>();
+        viewList=new ArrayList<>();
+        viewList.add("IOM01");
+        viewList.add("IOM02");
+        viewList.add("IOM03");
+        viewList.add("IOM04");
+        viewList.add("IOM05");
+        viewList.add("IOM06");
+        viewList.add("IOM07");
+
+        addImageViewLists();
+//        setItemCount();
+
+    }
+
+
+    List<String> viewList;
+    private void GetSysCount() {
+        showLoading("查询中...");
+        WebModel.getInstance().sysLoginCountPage(new MResponseListener() {
+            @Override
+            public void onSuccess(MResponse response) {
+                String callWebService = String.valueOf(response.data);
+//                callWebService="[{\"RT_LIST\":[{\"PROC_CODE\":\"IOM01\",\"COUNT\":1,\"PROC_NAME\"" +
+//                        ":\"设备巡检管理\"},{\"PROC_CODE\":\"IOM04\",\"COUNT\":2,\"PROC_NAME\"" +
+//                        ":\"设备检修管理\"}],\"RT_F\":\"1\",\"RT_D\":\"系统接口提示,系统" +
+//                        "首页数据获取成功!\"}]";
+                List<SysCountClass> sysCountClasses = JSON.parseArray(callWebService,
+                        SysCountClass.class);
+                SysCountClass sysCountClass = sysCountClasses.get(0);
+                String rt_f = sysCountClass.getRT_F();
+
+                if (rt_f.equals("1")) {
+                    rt_list = sysCountClass.getRT_LIST();
+
+                    for (int i = 0; i < rt_list.size(); i++) {
+                        String proc_code = rt_list.get(i).getPROC_CODE();
+                        for (int j = 0; j < viewList.size(); j++) {
+                            String viewName = viewList.get(j);
+                            if (viewName.equals(proc_code)){
+                                imageViewList.get(j).setVisibility(View.VISIBLE);
+                                int count = rt_list.get(i).getCOUNT();
+                                BadgeView badgeView = new BadgeView(mContext,imageViewList.get(j));
+                                badgeView.setBVText(badgeView, count);
+                            }
+                        }
+
+                    }
+//                    for (int i = 0; i < 7; i++) {
+//                        String viewCount = viewList.get(i);
+//                        for (int j = 0; j < rt_list.size(); j++) {
+//                            if (rt_list.get(j).getPROC_CODE().equals(viewCount)) {
+//                                int count1 = rt_list.get(j).getCOUNT();
+//                                BadgeView badgeView = badgeViewList.get(j);
+//                                badgeView.setBVText(badgeView, count1);
+//                                setXml(i + "COUNT", count1 + "");
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    setXml("RTLIST_SIZE", rt_list.size() + "");
+//                    initItemCount();
+                } else {
+                    showToast("登录失败，" + sysCountClass.getRT_D());
+                }
+                hideLoading();
+
+            }
+
+            @Override
+            public void onError(final MResponse response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.msg != null) {
+                            showToast(response.msg.toString());
+                        } else {
+                            showToast("出错了！");
+                        }
+                        hideLoading();
+                    }
+                });
+            }
+        }, getXml("OPER_NO", "1"));
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        Intent intent=new Intent();Item
+//        intent.setAction("com.test");
+//        sendBroadcast(intent);
+//        String callWebService = "";
+//        callWebService="[{\"RT_LIST\":[{\"PROC_CODE\":\"IOM01\",\"COUNT\":1,\"PROC_NAME\"" +
+//                ":\"设备巡检管理\"},{\"PROC_CODE\":\"IOM04\",\"COUNT\":2,\"PROC_NAME\"" +
+//                ":\"设备检修管理\"},{\"PROC_CODE\":\"IOM05\",\"COUNT\":1,\"PROC_NAME\"" +
+//                ":\"设备巡检管理\"},{\"PROC_CODE\":\"IOM03\",\"COUNT\":2,\"PROC_NAME\"" +
+//                ":\"设备巡检管理\"}],\"RT_F\":\"1\",\"RT_D\":\"系统接口提示,系统" +
+//                "首页数据获取成功!\"}]";
+//        List<SysCountClass> sysCountClasses = JSON.parseArray(callWebService,
+//                SysCountClass.class);
+//        SysCountClass sysCountClass = sysCountClasses.get(0);
+//        String rt_f = sysCountClass.getRT_F();
+//
+//        if (rt_f.equals("1")) {
+//            rt_list = sysCountClass.getRT_LIST();
+//
+//            for (int i = 0; i < rt_list.size(); i++) {
+//                String proc_code = rt_list.get(i).getPROC_CODE();
+//                for (int j = 0; j < viewList.size(); j++) {
+//                    String viewName = viewList.get(j);
+//                    if (viewName.equals(proc_code)) {
+//                        imageViewList.get(j).setVisibility(View.VISIBLE);
+//                        int count = rt_list.get(i).getCOUNT();
+//                        BadgeView badgeView = new BadgeView(mContext,imageViewList.get(j));
+//                        badgeView.setBVText(badgeView, count);
+//                    }
+//                }
+//
+//            }
+//            for (int i = 0; i < 7; i++) {
+//                String viewCount = viewList.get(i);
+//                for (int j = 0; j < rt_list.size(); j++) {
+//                    if (rt_list.get(j).getPROC_CODE().equals(viewCount)) {
+//                        int count1 = rt_list.get(j).getCOUNT();
+//                        BadgeView badgeView = badgeViewList.get(j+1);
+//                        badgeView.setBVText(badgeView, count1);
+//                        setXml(i + "COUNT", count1 + "");
+//                        break;
+//                    }
+//                }
+//            }
+
+//        }
+        GetSysCount();
+
+
+    }
+
+    private void initItemCount() {
+
+        for (int i = 0; i < badgeViewList.size(); i++) {
+            String xml = getXml(i + "COUNT", "");
+            int count = Integer.parseInt(xml);
+            BadgeView badgeView = badgeViewList.get(i);
+            badgeView.setBVText(badgeView, count);
+        }
+    }
+
+    //初始化Item未完成数量
+    private void setItemCount() {
+        rtlist_size = Integer.parseInt(getXml("RTLIST_SIZE", ""));
+        for (int i = 0; i < rtlist_size; i++) {
+            String xml = getXml(i + "COUNT", "");
+            if (TextUtils.isEmpty(xml)) {
+                xml = "0";
+            }
+            int count = Integer.parseInt(xml);
+            BadgeView badgeView = new BadgeView(this, imageViewList.get(i));
+            badgeView.setBVText(badgeView, count);
+            badgeViewList.add(badgeView);
+
+        }
+    }
+
+    //把各个模块图片加到list里
+    private void addImageViewLists() {
+        imageViewList = new ArrayList<ImageView>();
+        imageViewList.add(num1);
+        imageViewList.add(num2);
+        imageViewList.add(num3);
+        imageViewList.add(num4);
+        imageViewList.add(num5);
+        imageViewList.add(num6);
+        imageViewList.add(num7);
+    }
+
+    @Click
+    void num1() {
+        openAct(InspectAct.class, true);
+    }
+
+    @Click
+    void num2() {
+        openAct(SpecialAct.class, true);
+    }
+
+    @Click
+    void num3() {
+        openAct(RegularlAct.class, true);
+    }
+
+    @Click
+    void num4() {
+        openAct(AlarmAct.class, true);
+    }
+
+    @Click
+    void num5() {
+        openAct(TroubleManagerAct.class,true);
+    }
+
+    @Click
+    void num6() {
+        openAct(EquipmentReplaceAct.class,true);
+    }
+
+    @Override
+    protected Context regieterBaiduBaseCount() {
+        return null;
+    }
+
+    @Override
+    protected void initTitlebar() {
+    }
+
+    @Override
+    public void onEventMainThread(ViewMessage viewMessage) {
+
+    }
+
+}
+

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PowerMeasure</string>
+    <string name="cb_beep">beep new</string>
+    <string name="TextView_Null"> </string>
+    <string name="Start_Search_Btn">开始</string>
+    <string name="Cancle_btn">退出</string>
+    <string name="Stop_Search_Btn">停止</string>
+    <string name="DIA_ALERT">警告！</string>
+    <string name="DEV_OPEN_ERR">Device open failed！Software will quit！</string>
+    <string name="DIA_CHECK">确认</string>
+</resources>

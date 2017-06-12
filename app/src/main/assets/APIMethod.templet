@@ -1,0 +1,7 @@
+package com.speedata.zhongqi.application;
+
+public class APIMethod {
+    |
+    public static final String ${methodName} ="${method}.do";
+    |
+}
