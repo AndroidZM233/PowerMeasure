@@ -1,8 +1,0 @@
-
-package com.speedata.zhongqi.bean;
-
-
-@ListBeanAnnotation(Type = ListBeanAnnotation.BEAN_TYPE.PLAIN)
-public class ${method} extends BaseBean{
-
-}

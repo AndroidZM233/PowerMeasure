@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="axis">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/libs/axis.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
